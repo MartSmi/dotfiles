@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# shell settings
+ln -sv ~/.dotfiles/zsh/.zshrc ~/.zshrc
+
