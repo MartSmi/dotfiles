@@ -1,0 +1,64 @@
+syntax on
+
+set noerrorbells
+set tabstop=2 softtabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set nu rnu
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set backspace=indent,eol,start
+set signcolumn=number
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+let mapleader = " "
+nnoremap <C-i> :!g++ -o  %:r.out % -std=c++11 && ./%:r.out<Enter>
+nnoremap <leader>d :!g++ -g -o  %:r+debug.out % -std=c++11 && gdb %:r+debug.out<Enter>
+
+" Use <Tab> and <S-Tab> for navigate completion list                            
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"                        
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'tweekmonster/gofmt.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-utils/vim-man'
+Plugin 'mbbill/undotree'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+Plugin 'vuciv/vim-bujo'
+Plugin 'tpope/vim-dispatch'
+Plugin 'morhetz/gruvbox'
+
+call vundle#end()
+filetype plugin indent on
+colorscheme gruvbox 
+set background=dark
+"let g:ycm_clangd_binary_path = "/usr/bin/clangd"
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
+"Disables documentation info popup on variable or function hover
+let g:ycm_auto_hover=''
+
+set completeopt-=preview
+
+
+autocmd filetype sh nnoremap <Return> :w <bar> exec '!./'.shellescape('%')<CR>
+

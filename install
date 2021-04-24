@@ -1,5 +1,29 @@
 #!/usr/bin/env sh
 
+# kitty settings
+ln -sv ~/.dotfiles/.config/kitty ~/.config/kitty
+
 # shell settings
 ln -sv ~/.dotfiles/zsh/.zshrc ~/.zshrc
+ln -sv ~/.dotfiles/zsh/.oh-my-zsh ~/.oh-my-zsh
+
+# byobu settings
+ln -sv ~/.dotfiles/byobu ~/.byobu
+
+# vscode settings
+ln -sv ~/.dotfiles/vscode ~/.vscode
+
+# nvim settings
+ln -sv ~/.dotfiles/.config/nvim ~/.config/nvim
+
+# vim settings -----------------
+ln -sv ~/.dotfiles/vim ~/.vim
+
+# vim package manager - vundle plugins install
+vim +BundleInstall
+
+# YCM install
+/usr/bin/python3 /home/masterpop/.dotfiles/vim/bundle/YouCompleteMe/install.py
+# ------------------------------
+
 
