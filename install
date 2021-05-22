@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# clone all submodules
+git submodule update --init --recursive
+
 # kitty settings
 ln -sv ~/.dotfiles/.config/kitty ~/.config/kitty
 
@@ -21,9 +24,6 @@ ln -sv ~/.dotfiles/.config/nvim ~/.config/nvim
 
 # vim settings -----------------
 ln -sv ~/.dotfiles/vim ~/.vim
-
-# clone all submodules
-git submodule update --init --recursive
 
 # vim package manager - vundle plugins install
 vim +BundleInstall
