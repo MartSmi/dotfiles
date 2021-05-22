@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/masterpop/.oh-my-zsh"
+export ZSH="/home/haemus/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -112,4 +112,21 @@ export PATH=/home/$USER/.config/nvcode/utils/bin:$PATH
 # bindkey -v
 
 #My customisation
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  exec startx
+fi
 alias b=byobu
+alias v=vim
+export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!{node_modules/*,.git/*}'" 
+export BAT_THEME="gruvbox-dark"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+#Extra PATH
+export PATH="/home/haemus/.cargo/bin:$PATH"
+
+source /etc/profile.d/z/z.sh
+

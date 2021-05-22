@@ -23,7 +23,7 @@ ln -sv ~/.dotfiles/vim ~/.vim
 vim +BundleInstall
 
 # YCM install
-/usr/bin/python3 /home/masterpop/.dotfiles/vim/bundle/YouCompleteMe/install.py
+/usr/bin/python3 ~/.dotfiles/vim/bundle/YouCompleteMe/install.py
 # ------------------------------
 
 
