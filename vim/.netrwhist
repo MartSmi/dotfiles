@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/haemus/.dotfiles/vim/bundle/gruvbox/colors'
+let g:netrw_dirhist_4='/home/haemus/.dotfiles/vim/bundle/gruvbox'
+let g:netrw_dirhist_3='/home/haemus/.dotfiles/.config/kitty'
+let g:netrw_dirhist_2='/home/haemus/.dotfiles/.config/kitty/kitty-themes'
+let g:netrw_dirhist_1='/home/haemus/.dotfiles/.config/kitty/kitty-themes/themes'
+let g:netrw_dirhist_0='/home/haemus/.dotfiles/.config/kitty/kitty-themes'
+let g:netrw_dirhist_9='/home/haemus/.dotfiles/.config/kitty'
+let g:netrw_dirhist_8='/home/haemus/.vim/bundle/gruvbox/colors'
+let g:netrw_dirhist_7='/home/haemus/.vim/bundle/gruvbox'
+let g:netrw_dirhist_6='/home/haemus/.vim/bundle'
