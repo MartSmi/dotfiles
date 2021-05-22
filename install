@@ -7,6 +7,12 @@ ln -sv ~/.dotfiles/.config/kitty ~/.config/kitty
 ln -sv ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ln -sv ~/.dotfiles/zsh/.oh-my-zsh ~/.oh-my-zsh
 
+# install zsh powerlevel10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 # byobu settings
 ln -sv ~/.dotfiles/byobu ~/.byobu
 
@@ -25,5 +31,4 @@ vim +BundleInstall
 # YCM install
 /usr/bin/python3 ~/.dotfiles/vim/bundle/YouCompleteMe/install.py
 # ------------------------------
-
 
