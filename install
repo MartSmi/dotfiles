@@ -22,6 +22,9 @@ ln -sv ~/.dotfiles/.config/nvim ~/.config/nvim
 # vim settings -----------------
 ln -sv ~/.dotfiles/vim ~/.vim
 
+# clone all submodules
+git submodule update --init --recursive
+
 # vim package manager - vundle plugins install
 vim +BundleInstall
 
