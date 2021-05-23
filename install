@@ -4,7 +4,7 @@
 git submodule update --init --recursive
 
 # kitty settings
-ln -sv ~/.dotfiles/.config/kitty ~/.config/kitty
+ln -sv ~/.dotfiles/kitty ~/.config/kitty
 
 # shell settings
 ln -sv ~/.dotfiles/zsh/.zshrc ~/.zshrc
@@ -20,7 +20,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 ln -sv ~/.dotfiles/byobu ~/.byobu
 
 # nvim settings
-ln -sv ~/.dotfiles/.config/nvim ~/.config/nvim
+ln -sv ~/.dotfiles/nvim ~/.config/nvim
 
 # vim settings -----------------
 ln -sv ~/.dotfiles/vim ~/.vim
