@@ -1,43 +1,26 @@
 syntax on
-
-set noerrorbells
-set tabstop=2 softtabstop=2
-set shiftwidth=2
-set expandtab
-set smartindent
-set nu rnu
-set nowrap
-set smartcase
-set noswapfile
-set nobackup
-set undodir=~/.vim/undodir
-set undofile
-set incsearch
 set backspace=indent,eol,start
-set signcolumn=number
+set hidden
+set noswapfile
+set nu rnu
 set clipboard=unnamedplus
+set path=.,**
+set shiftwidth=2 tabstop=2 softtabstop=2 expandtab autoindent smartindent
+set autowrite
+set wildmode=longest,list,full
+set wildmenu
+set scl=number
+set linebreak
+set background=dark
 
-"set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
-" Space as leader key
 let mapleader = " "
+" Open terminal on vim start
+"autocmd vimenter * below terminal ++rows=6
 
-" debug c++ program
-"nnoremap <leader>d :!g++ -g -o  %:r+debug.out % -std=c++11 && gdb %:r+debug.out<Enter>
-" toggle termguicolors
-nnoremap <Leader>c :set tgc!<Enter>
-" buffer jumping
-nnoremap <Leader>p :bp<CR>
-nnoremap <Leader>o :bn<CR>
-" Use <Tab> and <S-Tab> for navigate completion list                            
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"                        
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Auto save on write
+"autocmd TextChanged,TextChangedI <buffer> silent write
+set foldmethod=marker
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -47,7 +30,7 @@ Plugin 'gmarik/Vundle.vim'
 " Code completion engine
 Plugin 'ycm-core/YouCompleteMe'
 " Git
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 " View man pages
 "Plugin 'vim-utils/vim-man'
 " Undo tree/tab
@@ -64,67 +47,48 @@ Plugin 'junegunn/fzf.vim'
 "make smth??
 "Plugin 'tpope/vim-dispatch'
 " Theme
-Plugin 'morhetz/gruvbox'
+Plugin 'gruvbox-community/gruvbox'
 " Display colors for color codes
-Plugin 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+"Plugin 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " File tree
 Plugin 'preservim/nerdtree'
 " Fancy start screen
 Plugin 'mhinz/vim-startify'
 " Linter
-Plugin 'dense-analysis/ale'
+"Plugin 'dense-analysis/ale'
 " Debugger
 Plugin 'puremourning/vimspector'
+Plugin 'sagi-z/vimspectorpy', { 'do': { -> vimspectorpy#update() } }
 " Maximize window
 Plugin 'szw/vim-maximizer'
-" minpac
-"call minpac#add('rrethy/vim-hexokinase', { 'do': 'make hexokinase' })
+Plugin 'Raimondi/delimitMate'
+" Center window horizontally
+Plugin 'jmckiern/vim-venter'
+" Autosave
+"Plugin '907th/vim-auto-save'
+" LaTex
+Plugin 'lervag/vimtex'
 
-" dein
-"call dein#add('rrethy/vim-hexokinase', { 'build': 'make hexokinase' })" Plugin 'ap/vim-css-color'
+Plugin 'godlygeek/tabular'
+Plugin 'preservim/vim-markdown'
 
 call vundle#end()
 filetype plugin indent on
 colorscheme gruvbox 
-set background=dark
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_borderless_table = 1
+
 set termguicolors
 "let g:ycm_clangd_binary_path = "/usr/bin/clangd"
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
 "Disables documentation info popup on variable or function hover
 let g:ycm_auto_hover=''
+"let g:ycm_enable_diagnostic_signs = 0
+"let g:ycm_enable_diagnostic_highlighting = 0
 
 set completeopt-=preview
 
-nnoremap <leader>n :NERDTreeFocus<CR>
-
-" save and run c++ program
-autocmd filetype cpp nnoremap <Leader> <Return> :w <Bar> !g++ -o  %:r.out % -std=c++11 && ./%:r.out<CR>
-autocmd filetype sh nnoremap <Leader> <Return> :w <bar> exec '!./'.shellescape('%')<CR>
-autocmd filetype python nnoremap <Leader> <Return> :w <bar> exec '!python '.shellescape('%')<CR>
-
-let g:NERDTreeMapActivateNode = "l"
-let g:NERDTreeMapCloseDir = "h"
-let g:Hexokinase_highlighters = ['backgroundfull']
-
-" FZF configuration =========================
-" This is the default extra key bindings
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-map <leader>f :Files<CR>
-map <leader>b :Buffers<CR>
-nnoremap <leader>g :Rg<CR>
-nnoremap <leader>t :Tags<CR>
-nnoremap <leader>m :Marks<CR>
-
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
@@ -178,48 +142,81 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
-" Linter
-let g:ale_linters = {'python': ['flake8'], 'javascript': ['eslint']}
-let g:ale_fixers = {'python': ['black'], 'javascript': ['prettier', 'eslint']}
-let g:ale_fix_on_save = 1
 
-" Debugger
-"let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-fun! GotoWindow(id)
-    call win_gotoid(a:id)
-    "MaximizerToggle
-endfun
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <leader>lcd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <leader>k :make <CR>
 
-" Debugger remaps
-nnoremap <leader>m :MaximizerToggle!<CR>
-nnoremap <leader>dd :call vimspector#Launch()<CR>
-nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>di :VimspectorShowOutput Console<CR>
-nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>de :call vimspector#Reset()<CR>
+"map <leader>f :Files<CR>
+map <leader>f :FZF<CR>
+map <leader>b :Buffers<CR>
+nnoremap <leader>g :Rg<CR>
+"nnoremap <leader>t :Tags<CR>
+"nnoremap <leader>m :Marks<CR>
+nnoremap <leader>d :YcmCompleter GoTo<CR>
 
-nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+nnoremap <leader>w :w!<CR>
 
-nmap <leader>dl <Plug>VimspectorStepInto
-nmap <leader>dj <Plug>VimspectorStepOver
-nmap <leader>dk <Plug>VimspectorStepOut
-nmap <leader>d_ <Plug>VimspectorRestart
-nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+map <leader>t :vert rightb term<CR>
+map <leader>ve :e $MYVIMRC<CR>
+map <leader>vs :source $MYVIMRC<CR>
+map <leader>h :VenterToggle<CR>
 
-nmap <leader>drc <Plug>VimspectorRunToCursor
-nmap <leader>db <Plug>VimspectorToggleBreakpoint
-nmap <leader>dp <Plug>VimspectorToggleConditionalBreakpoint
+map gf :e <cfile><CR>
+" Change terminal status line color
+"hi StatusLineTerm guibg=white guifg=blue
+"hi StatusLineTermNC guibg=white guifg=blue
+let delimitMate_expand_cr = 1
+" Custom functions
+" The function Nr2Bin() returns the binary string representation of a number.
+func Nr2Bin(nr)
+  let n = a:nr
+  let r = ""
+  while n
+    let r = '01'[n % 2] . r
+    let n = n / 2
+  endwhile
+  return r
+endfunc
 
-" <Plug>VimspectorStop
-" <Plug>VimspectorPause
+"LaTex
+" This is necessary for VimTeX to load properly. The "indent" is optional.
+" Note that most plugin managers will do this automatically.
+"filetype plugin indent on
 
-nnoremap <Leader>k :wincmd k<CR>
-nnoremap <Leader>j :wincmd j<CR>
-nnoremap <Leader>h :wincmd h<CR>
-nnoremap <Leader>l :wincmd l<CR>
+" This enables Vim's and neovim's syntax-related features. Without this, some
+" VimTeX features will not work (see ":help vimtex-requirements" for more
+" info).
+" syntax enable
 
-" <Plug>VimspectorAddFunctionBreakpoint
+" Viewer options: One may configure the viewer either by specifying a built-in
+" viewer method:
+let g:vimtex_view_method = 'zathura'
+
+" Or with a generic interface:
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+
+" VimTeX uses latexmk as the default compiler backend. If you use it, which is
+" strongly recommended, you probably don't need to configure anything. If you
+" want another compiler backend, you can change it as follows. The list of
+" supported backends and further explanation is provided in the documentation,
+" see ":help vimtex-compiler".
+let g:vimtex_compiler_method = 'latexmk'
+
+" Most VimTeX mappings rely on localleader and this can be changed with the
+" following line. The default is usually fine and is the symbol "\".
+let maplocalleader = ","
+
+" Latex specification
+au BufNewFile,BufRead *.tex
+    \ set nocursorline |
+    \ set nornu |
+    \ set number |
+    \ let g:loaded_matchparen=1 |
+
+au BufNewFile,BufRead *.s
+    \ set ft=asm | 
+    \ set makeprg=gcc\ -g\ -no-pie\ -o\ main\ %\ &&\ ./main
+
+hi NonText guifg=bg

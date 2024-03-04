@@ -111,12 +111,26 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/home/$USER/.config/nvcode/utils/bin:$PATH
 # bindkey -v
 
-#My customisation
+# My customisation
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx
 fi
+
+# Aliases
+alias s=sudo
 alias b=byobu
+alias r=ranger
 alias v=vim
+alias vr=vifm
+alias o=xdg-open
+#alias gc=~/code/scripts/bash_scripts/zoom-cli/./zoom-cli.sh
+alias xclip='xargs -0 echo -n | xclip -selection clipboard'
+alias feh='feh -B black'
+alias sp='sudo pacman -S'
+alias ys='yay -S'
+alias sv='sudo -E vim'
+alias ls='ls --color=tty --hyperlink=auto'
+#alias n='function _detach(){ nohup "$1" >/dev/null 2>&1 &; disown; }; _detach'
 export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!{node_modules/*,.git/*}'" 
 export BAT_THEME="gruvbox-dark"
@@ -126,7 +140,10 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 #Extra PATH
-export PATH="/home/haemus/.cargo/bin:$PATH"
+export PATH="/home/haemus/.cargo/bin:/home/haemus/code/projects/ExpiryDate/raw/raspiraw:/home/haemus/code/projects/ExpiryDate/raw/raspiraw/tools:/home/haemus/code/projects/ExpiryDate/raw/dcraw:/opt/android-sdk/platform-tools:/home/haemus/.local/bin$PATH"
 
-source /etc/profile.d/z/z.sh
+eval "$(fasd --init auto)" 
+#eval "$(fasd --init posix-alias zsh-hook)"
 
+#source /usr/share/z/z.sh
+#source /etc/profile.d/z/z.sh
