@@ -6,6 +6,12 @@ git submodule update --init --recursive
 ln -sv ~/.dotfiles/kitty ~/.config/kitty
 ln -sv ~/.dotfiles/i3 ~/.config/i3
 ln -sv ~/.dotfiles/polybar ~/.config/polybar
+ln -sv ~/.dotfiles/rofi ~/.config/rofi
+
+ln -sv ~/.dotfiles/.xinitrc ~/.xinitrc
+ln -sv ~/.dotfiles/.Xmodmap ~/.Xmodmap
+ln -sv ~/.dotfiles/.Xresources ~/.Xresources
+ln -sv ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
 
 # shell settings
 ln -sv ~/.dotfiles/zsh/.zshrc ~/.zshrc

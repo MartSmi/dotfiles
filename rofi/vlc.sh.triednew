@@ -1,0 +1,21 @@
+#!/bin/bash
+
+VID_PATH=$HOME/Videos
+
+if [ -z "$@" ]
+then
+    ls $VID_PATH
+else
+    N_DIRS=$(find $VID_PATH/"$@"/* -maxdepth 1 -type d | wc -l)
+    if [ $N_DIRS -lt 2 ] 
+    then
+        echo $VID_PATH/"$@"
+        #coproc (cvlc $VID_PATH/"$@" & >& /dev/null &)
+#        exit 0
+    else
+        echo $N_DIRS
+        aplay -d 0 /usr/share/sounds/alsa/Noise.wav
+        VID_PATH="$VID_PATH"/"$@"
+        ls "$VID_PATH"
+    fi
+fi
