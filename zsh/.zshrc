@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/haemus/.oh-my-zsh"
+export ZSH="/home/juels/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -140,7 +140,7 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 #Extra PATH
-export PATH="/home/haemus/.cargo/bin:/home/haemus/code/projects/ExpiryDate/raw/raspiraw:/home/haemus/code/projects/ExpiryDate/raw/raspiraw/tools:/home/haemus/code/projects/ExpiryDate/raw/dcraw:/opt/android-sdk/platform-tools:/home/haemus/.local/bin$PATH"
+export PATH="~/.cargo/bin:~/code/projects/ExpiryDate/raw/raspiraw:~/code/projects/ExpiryDate/raw/raspiraw/tools:~/code/projects/ExpiryDate/raw/dcraw:/opt/android-sdk/platform-tools:~/.local/bin$PATH"
 
 eval "$(fasd --init auto)" 
 #eval "$(fasd --init posix-alias zsh-hook)"
