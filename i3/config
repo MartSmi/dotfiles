@@ -17,7 +17,7 @@ set $mod Mod4
 #}
 
 #Polybar
-exec_always --no-startup-id sh $polybar
+#exec_always --no-startup-id sh $polybar
 exec_always ~/.config/i3/i3scripts/autoname_workspaces.py --norenumber_workspaces --icon_list_format chemist &
 #exec_always --no-startup-id exec i3-workspace-names-daemon
 
@@ -47,8 +47,8 @@ exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
 # XF86 keybindings (requires pactl, playerctl)
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -77,7 +77,8 @@ bindsym $mod+s kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-bindcode $mod+40 exec "rofi -modi drun,run,vlc:~/.config/rofi/vlc.sh -show drun -drun-match-fields name -drun-display-format {name} -width 30 -yoffset -60 -show-icons"
+bindsym $mod+w exec "rofi -modi window -show window -drun-match-fields name -drun-display-format {name} -width 30 -yoffset -60 -show-icons"
+bindcode $mod+40 exec "rofi -modi drun,run -show drun -drun-match-fields name -drun-display-format {name} -width 30 -yoffset -60 -show-icons"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
@@ -158,10 +159,10 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-bindsym $mod+w workspace number $ws1
-bindsym $mod+e workspace number $ws2
-bindsym $mod+r workspace number $ws3
-bindsym $mod+t workspace number $ws4
+#bindsym $mod+w workspace number $ws1
+#bindsym $mod+e workspace number $ws2
+#bindsym $mod+r workspace number $ws3
+#bindsym $mod+t workspace number $ws4
 
 #two hands
 bindsym $mod+u workspace number $ws1
@@ -170,6 +171,10 @@ bindsym $mod+o workspace number $ws3
 bindsym $mod+p workspace number $ws4
 bindsym $mod+bracketleft workspace number $ws5
 bindsym $mod+bracketright workspace number $ws6
+
+# mod+scroll switch to next/prev 
+bindsym --whole-window $mod+button4 workspace prev
+bindsym --whole-window $mod+button5 workspace next
   
 # move focused container to workspace
 bindsym $mod+Shift+u move container to workspace number $ws1
@@ -198,29 +203,29 @@ bindsym $mod+Shift+r restart
 #bindsym $mod+Shift+Alt+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
+#mode "resize" {
+#        # These bindings trigger as soon as you enter the resize mode
+#
+#        # Pressing left will shrink the window’s width.
+#        # Pressing right will grow the window’s width.
+#        # Pressing up will shrink the window’s height.
+#        # Pressing down will grow the window’s height.
+#        bindsym h resize shrink width 10 px or 10 ppt
+#        bindsym j resize grow height 10 px or 10 ppt
+#        bindsym k resize shrink height 10 px or 10 ppt
+#        bindsym l resize grow width 10 px or 10 ppt
+#
+#        # same bindings, but for the arrow keys
+#        bindsym Left resize shrink width 10 px or 10 ppt
+#        bindsym Down resize grow height 10 px or 10 ppt
+#        bindsym Up resize shrink height 10 px or 10 ppt
+#        bindsym Right resize grow width 10 px or 10 ppt
+#
+#        # back to normal: Enter or Escape or $mod+r
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#        bindsym $mod+r mode "default"
+#}
 
 #bindsym $mod+Shift+r mode "resize"
 
@@ -341,4 +346,5 @@ for_window [class="client.Main"] floating enable
 for_window [class="Blueman-manager"] floating enable
 
 #Keyboard config
-exec_always setxkbmap -option grp:alt_shift_toggle us,lt && xmodmap ~/.Xmodmap && xcape -e Hyper_L=Escape
+#exec_always setxkbmap -option grp:alt_shift_toggle us,lt && xmodmap ~/.Xmodmap && xcape -e Hyper_L=Escape
+exec_always setxkbmap -option grp:alt_shift_toggle us,lt

@@ -7,6 +7,7 @@ ln -sv ~/.dotfiles/kitty ~/.config/kitty
 ln -sv ~/.dotfiles/i3 ~/.config/i3
 ln -sv ~/.dotfiles/polybar ~/.config/polybar
 ln -sv ~/.dotfiles/rofi ~/.config/rofi
+ln -sv ~/.dotfiles/kmonad ~/.config/kmonad
 
 ln -sv ~/.dotfiles/.xinitrc ~/.xinitrc
 ln -sv ~/.dotfiles/.Xmodmap ~/.Xmodmap

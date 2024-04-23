@@ -1,0 +1,20 @@
+
+(defcfg
+  ;; For Linux
+  input  (device-file "/dev/input/by-id/usb-HOLDCHIP_USB_Gaming_Keyboard-event-kbd")
+  output (uinput-sink "My KMonad output")
+
+
+  ;; This option tells KMonad to let non-configured keys act normal
+  fallthrough true
+)
+
+(defsrc
+    caps    a    s    d    f    g    h    j    k    l    ;
+)
+
+(deflayer homerowmods
+    esc a   s   d   f   g   h   j   k   l   ;
+)
+
+
