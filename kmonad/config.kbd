@@ -14,8 +14,10 @@
 )
 
 (defalias
+    lalt (tap-next-release lalt (layer-toggle vi))
+
     met_a (tap-hold-next-release 200 a lmet)
-    alt_s (tap-hold-next-release 200 s lalt)
+    alt_s (tap-hold-next-release 200 s @lalt)
     ctl_d (tap-hold-next-release 200 d lctl)
     sft_f (tap-hold-next-release 200 f lsft)
 
@@ -27,6 +29,11 @@
 
 (deflayer homerowmods
     esc @met_a   @alt_s   @ctl_d   @sft_f   g   h   @sft_j   @ctl_k   @alt_l   @met_;
+)
+
+
+(deflayer vi
+	_    _    _    _    _    _    lft    down    up    rght    _    
 )
 
 
