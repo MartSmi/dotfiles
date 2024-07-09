@@ -4,7 +4,7 @@ Description=kmonad keyboard config
 [Service]
 Restart=always
 RestartSec=3
-ExecStart=/usr/bin/kmonad /home/juels/.config/kmonad/config.kbd
+ExecStart=/usr/bin/kmonad /home/hoper/.config/kmonad/config.kbd
 Nice=-20
 
 [Install]
