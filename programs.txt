@@ -19,6 +19,7 @@ rsync
 neofetch
 sed
 signal-desktop
+stow
 swaylock-effects
 termdown
 vim
@@ -27,3 +28,5 @@ xkeyboard-config
 xlayoutdisplay
 zsh
 7zip
+
+dosfstools

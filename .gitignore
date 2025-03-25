@@ -1,1 +1,4 @@
 kitty/kitty-themes
+fish/.config/fish/fish_variables
+fish/.config/fish/functions
+nvim/.config/nvim/spell

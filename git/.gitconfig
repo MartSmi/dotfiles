@@ -1,0 +1,7 @@
+[user]
+	email = martynas.smi@proton.me
+	name = Martynas Smitas
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
